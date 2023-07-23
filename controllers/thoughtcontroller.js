@@ -67,7 +67,7 @@ module.exports = {
     }
   },
 
-  // Add a reaction to a student
+  // Add a reaction to a thought
   async addReaction(req, res) {
     console.log("You are adding an assignment");
     console.log(req.body);
