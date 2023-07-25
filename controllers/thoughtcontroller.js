@@ -33,7 +33,7 @@ module.exports = {
       const thought = await Thought.create(req.body);
       res.json(thought);
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   },
   // Delete a thought and remove them from the user
