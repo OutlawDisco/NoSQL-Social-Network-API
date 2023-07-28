@@ -13,18 +13,34 @@ module.exports = {
     }
   },
   // Get a single thought
+  // async getSingleThought(req, res) {
+  //   try {
+  //     const thought = await Thought.findOne({
+  //       _id: req.params.thoughtId,
+  //     }).select("-__v");
+
+  //     if (!thought) {
+  //       return res.status(404).json({ message: "No thought with that ID" });
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //     return res.status(500).json(err);
+  //   }
+  // },// get single thought by id
   async getSingleThought(req, res) {
     try {
-      const thought = await Thought.findOne({
+      const dbThoughtData = await Thought.findOne({
         _id: req.params.thoughtId,
-      }).select("-__v");
+      });
 
-      if (!thought) {
-        return res.status(404).json({ message: "No thought with that ID" });
+      if (!dbThoughtData) {
+        return res.status(404).json({ message: "No thought with this id!" });
       }
+
+      res.json(dbThoughtData);
     } catch (err) {
       console.log(err);
-      return res.status(500).json(err);
+      res.status(500).json(err);
     }
   },
   // create a new thought
@@ -93,7 +109,7 @@ module.exports = {
     try {
       const thought = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
-        { $addToSet: { reaction: req.body } },
+        { $addToSet: { reactions: req.body } },
         { runValidators: true, new: true }
       );
 
@@ -113,7 +129,7 @@ module.exports = {
     try {
       const thought = await Thought.findOneAndUpdate(
         { _id: req.params.thougthId },
-        { $pull: { reaction: { reactionId: req.params.reactionId } } },
+        { $pull: { reactions: { reactionId: req.params.reactionId } } },
         { runValidators: true, new: true }
       );
 
