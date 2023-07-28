@@ -10,6 +10,10 @@ const thoughtSchema = new Schema(
       min_length: 1,
       max_length: 280,
     },
+    username: {
+      type: String,
+      required: true,
+    },
     createdAt: {
       type: Date,
       default: Date.now,
