@@ -49,7 +49,7 @@ module.exports = {
         return res.status(404).json({ message: "No thought with this id!" });
       }
 
-      res.json(user);
+      res.json(User);
     } catch (err) {
       return res.status(500).json(err);
     }
@@ -87,7 +87,7 @@ module.exports = {
 
   // Add a reaction to a thought
   async addReaction(req, res) {
-    console.log("You are adding an assignment");
+    console.log("You are adding a reaction");
     console.log(req.body);
 
     try {
@@ -112,7 +112,7 @@ module.exports = {
   async removeReaction(req, res) {
     try {
       const thought = await Thought.findOneAndUpdate(
-        { _id: req.params.studentId },
+        { _id: req.params.thougthId },
         { $pull: { reaction: { reactionId: req.params.reactionId } } },
         { runValidators: true, new: true }
       );
