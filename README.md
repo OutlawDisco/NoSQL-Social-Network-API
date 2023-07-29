@@ -14,6 +14,7 @@ npm i
 ## Usage
 
 Link to walkthrough video
+https://drive.google.com/file/d/1v2cJWhORWxQwI6BVGrR3XJWevBuIUr_V/view
 
 Link To github repo
 https://github.com/OutlawDisco/MVC-Tech-blog
